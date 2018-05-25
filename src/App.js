@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Router, Route, Switch } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
+import './main.min.css';
+
+import {
+  LandingPage,
+} from './pages';
+
+import {
+  LessionsPage,
+  FixedPage
+} from './pages/lessons'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Router history={createBrowserHistory()}>
+          <Switch>
+            <Route exact path='/' component={ LandingPage } />
+
+            <Route exact path='/lessions' component={ LessionsPage } />
+            <Route exact path='/lessions/fixed' component={ FixedPage } />
+          </Switch>
+        </Router>
       </div>
     );
   }
